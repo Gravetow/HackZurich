@@ -16,14 +16,17 @@ public class OpenBankingAPI : MonoBehaviour
     [Inject]
     readonly SignalBus signalBus;
 
-    public OpenBankingAPI()
-    {
-        Debug.Log("API instantiated");
-    }
+    private Customer customer;
 
     private void Awake()
     {
-        StartCoroutine(getTransactions(userId));
+        StartCoroutine(CalculateCustomerSpending());
+    }
+
+    public IEnumerator CalculateCustomerSpending()
+    {
+        yield return StartCoroutine(getCustomerInfo(customerNick));
+        yield return StartCoroutine(getTransactions(userId));
     }
 
     public IEnumerator getCustomerInfo(string nickname)
@@ -48,7 +51,7 @@ public class OpenBankingAPI : MonoBehaviour
             responseText = responseText.Substring(1, responseText.Length-2);
             Debug.Log(responseText);
 
-            Customer customer = JsonUtility.FromJson<Customer>(responseText);
+            customer = JsonUtility.FromJson<Customer>(responseText);
             Debug.Log(customer.kyc.annualSpending);
         }
     }
@@ -74,10 +77,15 @@ public class OpenBankingAPI : MonoBehaviour
 
             // The unity mapper uses the field names for parsing. `Object` is a reserved keyword, so we replace it with `Items`
             responseText = responseText.Replace("\"object\"", "\"Items\"");
+
             Transaction[] tx = JsonHelper.FromJson<Transaction>(responseText);
 
-            signalBus.Fire(new TransactionsAcquiredSignal(){ transactions = tx });
-            Debug.Log(tx[0].id);
+
+            double spendings = OpenBankingAPIUtils.spendingOnDate(tx, DateTime.Now.AddDays(-1));
+
+            double workerPercentage = Mathf.Clamp((float)(customer.kyc.annualSpending/365/ spendings), 0.2f,2f);
+
+            signalBus.Fire(new WorkerPercentageCalculatedSignal() { workerPercentage = workerPercentage });
         }
     }
 
@@ -93,9 +101,9 @@ public class OpenBankingAPI : MonoBehaviour
 public class KYC
 {
     public string id;
-    public string annualIncome;
-    public string annualSpending;
-    public string totalWealth;
+    public double annualIncome;
+    public double annualSpending;
+    public double totalWealth;
 }
 
 [Serializable]
@@ -111,7 +119,7 @@ public class Customer
 public class Transaction
 {
     public string id;
-    public string date;
+    public string valuedate;
     public double amount;
 }
 

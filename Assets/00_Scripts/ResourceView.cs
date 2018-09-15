@@ -9,24 +9,37 @@ public class ResourceView : MonoBehaviour
 
     public int resourceViewType = 0;
 
-    [Inject] 
-    public TextMeshPro TextMeshPro;
+
+    public TextMeshProUGUI amount;
 
     public void Awake()
     {
         _signalBus.Subscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
-        _signalBus.Subscribe<TransactionsAcquiredSignal>(OnTransactionsAcquired);
+        _signalBus.Subscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
     public void OnDestroy()
     {
         _signalBus.Unsubscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
-        _signalBus.Unsubscribe<TransactionsAcquiredSignal>(OnTransactionsAcquired);
+        _signalBus.Unsubscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
-    public void OnTransactionsAcquired(TransactionsAcquiredSignal signal)
+    public void OnTransactionsAcquired(WorkerPercentageCalculatedSignal signal)
     {
-        Debug.LogError(signal.transactions.Length);
+        int resourceValue = 0;
+
+        switch (resourceViewType)
+        {
+            case 0:
+                resourceValue = (int)signal.workerPercentage;
+                break;
+            case 1:
+                resourceValue = (int)signal.workerPercentage;
+                break;
+        }
+
+        amount.SetText("" + resourceValue);
+
     }
 
     public void OnResourcesUpdated(ResourceModelUpdatedSignal signal)
@@ -43,6 +56,6 @@ public class ResourceView : MonoBehaviour
                 break;
         }
 
-        TextMeshPro.SetText("" + resourceValue);
+        //TextMeshPro.SetText("" + resourceValue);
     }
 }

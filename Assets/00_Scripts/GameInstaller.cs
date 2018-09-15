@@ -12,7 +12,7 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         Container.DeclareSignal<ResourceModelUpdatedSignal>();
         Container.DeclareSignal<TileClickedSignal>();
         Container.DeclareSignal<LeaveConstructionSignal>();
-        Container.DeclareSignal<TransactionsAcquiredSignal>();
+        Container.DeclareSignal<WorkerPercentageCalculatedSignal>();
 
         Container.Bind<HouseModel>().FromInstance(houseModel);
 

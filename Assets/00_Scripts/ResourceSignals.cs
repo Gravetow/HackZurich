@@ -19,7 +19,7 @@ public class LeaveConstructionSignal
     public GameObject buildingBuilt;
 }
 
-public class TransactionsAcquiredSignal
+public class WorkerPercentageCalculatedSignal
 {
-    public Transaction[] transactions;
+    public double workerPercentage;
 }
