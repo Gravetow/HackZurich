@@ -16,5 +16,5 @@ public class TileClickedSignal
 
 public class LeaveConstructionSignal
 {
-    public bool buildingBuilt;
+    public GameObject buildingBuilt;
 }
