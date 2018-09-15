@@ -5,6 +5,5 @@ using UnityEngine;
 public class CarModel : ScriptableObject
 {
     public List<GameObject> Cars = new List<GameObject>();
-
 }
 
