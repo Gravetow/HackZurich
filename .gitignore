@@ -19,3 +19,15 @@
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
+
+\.vs/HackZurich/v15/Browse\.VC\.opendb
+
+\.vs/HackZurich/v15/Server/sqlite3/db\.lock
+
+\.vs/HackZurich/v15/Server/sqlite3/storage\.ide
+
+\.vs/HackZurich/v15/Server/sqlite3/storage\.ide-shm
+
+\.vs/HackZurich/v15/Server/sqlite3/storage\.ide-wal
+
+\.vs/HackZurich/v15/Browse\.VC\.db
