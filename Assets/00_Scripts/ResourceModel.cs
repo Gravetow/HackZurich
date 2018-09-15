@@ -6,4 +6,5 @@ public class ResourceModel : ScriptableObject
     public int Currency;
     public int Workers;
 
+
 }

@@ -18,3 +18,8 @@ public class LeaveConstructionSignal
 {
     public GameObject buildingBuilt;
 }
+
+public class TransactionsAcquiredSignal
+{
+    public Transaction[] transactions;
+}

@@ -12,6 +12,7 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         Container.DeclareSignal<ResourceModelUpdatedSignal>();
         Container.DeclareSignal<TileClickedSignal>();
         Container.DeclareSignal<LeaveConstructionSignal>();
+        Container.DeclareSignal<TransactionsAcquiredSignal>();
 
         Container.Bind<HouseModel>().FromInstance(houseModel);
 
@@ -19,5 +20,6 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         Container.BindInterfacesTo<TileClick>().AsSingle();
         Container.BindInterfacesTo<CameraMovement>().AsSingle();
         Container.BindInterfacesTo<OverlayView>().AsSingle();
+        Container.BindInterfacesTo<OpenBankingAPI>().AsSingle();
     }
 }
