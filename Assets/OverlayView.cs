@@ -11,8 +11,11 @@ public class OverlayView : MonoBehaviour
     [Inject]
     public HouseModel houseModel;
 
+    public GameObject[] Descriptions;
+
     private Vector3 position;
     private GameObject currentHouse;
+    private GameObject currentDescription;
 
     private void Awake()
     {
@@ -36,6 +39,7 @@ public class OverlayView : MonoBehaviour
         _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = null });
         gameObject.SetActive(false);
         Destroy(currentHouse);
+        currentDescription.SetActive(false);
     }
 
     public void ConfirmConstruction()
@@ -43,6 +47,7 @@ public class OverlayView : MonoBehaviour
         _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = currentHouse });
         gameObject.SetActive(false);
         currentHouse = null;
+        currentDescription.SetActive(false);
     }
 
     public void ShowHouse(int houseId)
@@ -50,8 +55,11 @@ public class OverlayView : MonoBehaviour
         if(currentHouse != null)
         {
             Destroy(currentHouse);
+            currentDescription.SetActive(false);
         }
 
+        currentDescription = Descriptions[houseId - 4];
+        currentDescription.SetActive(true);
         currentHouse = Instantiate(houseModel.Houses[houseId]);
         currentHouse.transform.position = position;
         currentHouse.transform.eulerAngles += new Vector3(0, (float)Random.Range(0, 4) * 90f, 0);
