@@ -6,5 +6,5 @@ using Zenject;
 
 public class ResourceModelUpdatedSignal
 {
-    ResourceModel resourceModel;
+    public ResourceModel ResourceModel;
 }

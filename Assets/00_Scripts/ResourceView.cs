@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
@@ -23,20 +24,20 @@ public class ResourceView : MonoBehaviour
         _signalBus.Unsubscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
     }
 
-    public void OnResourcesUpdated(ResourceModel resourceModel)
+    public void OnResourcesUpdated(ResourceModelUpdatedSignal signal)
     {
         int resourceValue = 0;
 
         switch(resourceViewType)
         {
             case 0:
-                resourceValue = resourceModel.Currency;
+                resourceValue = signal.ResourceModel.Currency;
                 break;
             case 1:
-                resourceValue = resourceModel.Workers;
+                resourceValue = signal.ResourceModel.Workers;
                 break;
         }
 
-        TextMeshPro.SetText(resourceValue);
+        TextMeshPro.SetText("" + resourceValue);
     }
 }
