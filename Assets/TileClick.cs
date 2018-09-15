@@ -8,15 +8,23 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     [Inject]
     readonly SignalBus _signalBus;
 
+    [Inject]
+    public HouseModel houseModel;
+
     private BoxCollider boxCollider;
 
     public GameObject editBox;
+    private GameObject tile;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider>();
         _signalBus.Subscribe<LeaveConstructionSignal>(OnLeaveConstruction);
         _signalBus.Subscribe<TileClickedSignal>(OnTileClicked);
+
+        tile = Instantiate(houseModel.Houses[Random.Range(0,3)]);
+        tile.transform.position = transform.position;
+
     }
 
     private void OnDestroy()
@@ -27,6 +35,10 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
     public void OnLeaveConstruction(LeaveConstructionSignal leaveConstructionSignal)
     {
+        if(leaveConstructionSignal.buildingBuilt == false)
+        {
+            tile.SetActive(true);
+        }
         boxCollider.enabled = true;
         editBox.SetActive(false);
     }
@@ -39,9 +51,9 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         _signalBus.Fire(new TileClickedSignal() { position = transform.position });
-        editBox.transform.position = transform.position;
+        editBox.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+        tile.SetActive(false);
         editBox.SetActive(true);
-        editBox.GetComponent<Material>().DOColor(new Color(255,143,0,0) , 0.5f).SetLoops(-1);
 
     }
 }

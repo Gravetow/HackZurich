@@ -5,9 +5,14 @@ using Zenject;
 
 public class OverlayView : MonoBehaviour
 {
-
     [Inject]
     readonly SignalBus _signalBus;
+
+    [Inject]
+    public HouseModel houseModel;
+
+    private Vector3 position;
+    private GameObject currentHouse;
 
     private void Awake()
     {
@@ -22,14 +27,33 @@ public class OverlayView : MonoBehaviour
 
     private void ActivateOverlay(TileClickedSignal tileClickedSignal)
     {
+        position = tileClickedSignal.position;
         gameObject.SetActive(true);
     }
 
-    public void DeactivateOverlay()
+    public void CancelConstruction()
     {
-        _signalBus.Fire<LeaveConstructionSignal>();
+        _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = false });
         gameObject.SetActive(false);
+        Destroy(currentHouse);
     }
 
+    public void ConfirmConstruction()
+    {
+        _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = true });
+        gameObject.SetActive(false);
+        currentHouse = null;
+    }
+
+    public void ShowHouse(int houseId)
+    {
+        if(currentHouse != null)
+        {
+            Destroy(currentHouse);
+        }
+
+        currentHouse = Instantiate(houseModel.Houses[houseId]);
+        currentHouse.transform.position = position;
+    }
 
 }
