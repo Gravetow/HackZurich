@@ -18,3 +18,8 @@ public class LeaveConstructionSignal
 {
     public GameObject buildingBuilt;
 }
+
+public class WorkerPercentageCalculatedSignal
+{
+    public double workerPercentage;
+}

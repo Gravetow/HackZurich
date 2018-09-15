@@ -3,17 +3,30 @@ using System.Collections.Generic;
 using UnityEngine.Networking;
 using UnityEngine;
 using System;
+using Zenject;
 
-public class OpenBankingAPI
+public class OpenBankingAPI : MonoBehaviour
 {
+
     public const string baseUrl = "https://csopenbankingzh.azurewebsites.net";
     public const string bearerToken = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ik9UUXlRVGRCTkRFNU1rWTNNMFZFTnpNeU9EWkJOa1pETkRCR1FrRkZOamxDTTBJeE5EazRNdyJ9.eyJpc3MiOiJodHRwczovL2dicHJvamVjdC5hdXRoMC5jb20vIiwic3ViIjoiYXV0aDB8NWI5Y2Q5MGRmMTY0MjcyMWFkODc3ZDJiIiwiYXVkIjpbImh0dHBzOi8vb3BlbmJhbmtpbmcuY29tL2FwaSIsImh0dHBzOi8vZ2Jwcm9qZWN0LmF1dGgwLmNvbS91c2VyaW5mbyJdLCJpYXQiOjE1MzcwMDYwODIsImV4cCI6MTUzNzA5MjQ4MiwiYXpwIjoicThJTVlzMVNLekt0WExvdjhWM0pab3oxaE43MHgzQTciLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIiwiZ3R5IjoicGFzc3dvcmQifQ.T1J0luSgVNmO6tmUdSHbwF5ijc084kZAWUlOyhvGmdE8ELcVSemKjYlqfRu_2TwuedqwlsZA-rFn5i93YVMO-mDGTx1CQunWHmR8EQ2TWR8yZckMd0CKVZvqsYWyOXpcgpYDXN5kHRtiSnDayCdd-qvsdBsPiOn7sX5D_SxtNsCtMpUsk45_OXao9IBBLtTRmtfMlhBL1-zOIuVHM10dQdF0xBwpumTxC-Rr21m35DvtaGv2HM1QaC2NYNF96MOtIU342VuMgilEh8f3pAU1QTeIv2WDbE0zKVkuldVimRdRMovovko7PxCQ06p8y5AkWPKMt-lCvnJsobwbbigDYA";
     public const int userId = 13;
     public const string customerNick = "nickname100223";
 
-    public OpenBankingAPI()
+    [Inject]
+    readonly SignalBus signalBus;
+
+    private Customer customer;
+
+    private void Awake()
     {
-        Debug.Log("API instantiated");
+        StartCoroutine(CalculateCustomerSpending());
+    }
+
+    public IEnumerator CalculateCustomerSpending()
+    {
+        yield return StartCoroutine(getCustomerInfo(customerNick));
+        yield return StartCoroutine(getTransactions(userId));
     }
 
     public IEnumerator getCustomerInfo(string nickname)
@@ -38,7 +51,7 @@ public class OpenBankingAPI
             responseText = responseText.Substring(1, responseText.Length-2);
             Debug.Log(responseText);
 
-            Customer customer = JsonUtility.FromJson<Customer>(responseText);
+            customer = JsonUtility.FromJson<Customer>(responseText);
             Debug.Log(customer.kyc.annualSpending);
         }
     }
@@ -64,8 +77,15 @@ public class OpenBankingAPI
 
             // The unity mapper uses the field names for parsing. `Object` is a reserved keyword, so we replace it with `Items`
             responseText = responseText.Replace("\"object\"", "\"Items\"");
+
             Transaction[] tx = JsonHelper.FromJson<Transaction>(responseText);
-            Debug.Log(tx[0].id);
+
+
+            double spendings = OpenBankingAPIUtils.spendingOnDate(tx, DateTime.Now.AddDays(-1));
+
+            double workerPercentage = Mathf.Clamp((float)(customer.kyc.annualSpending/365/ spendings), 0.2f,2f);
+
+            signalBus.Fire(new WorkerPercentageCalculatedSignal() { workerPercentage = workerPercentage });
         }
     }
 
@@ -81,9 +101,9 @@ public class OpenBankingAPI
 public class KYC
 {
     public string id;
-    public string annualIncome;
-    public string annualSpending;
-    public string totalWealth;
+    public double annualIncome;
+    public double annualSpending;
+    public double totalWealth;
 }
 
 [Serializable]
@@ -99,7 +119,7 @@ public class Customer
 public class Transaction
 {
     public string id;
-    public string date;
+    public string valuedate;
     public double amount;
 }
 
