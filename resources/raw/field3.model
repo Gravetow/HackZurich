@@ -1,0 +1,32 @@
+# Made using Asset Forge (1.3)
+
+:models
+#Modular Terrain Hilly/Grass_Flat[(0, -0.1, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_0;Grass]
+#Modular Terrain Hilly/Grass_Flat[(-1, -0.1, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_1;Grass]
+#Modular Terrain Hilly/Grass_Flat[(1, -0.1, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_2;Grass]
+#Modular Terrain Hilly/Grass_Flat[(1, -0.1, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_3;Grass]
+#Modular Terrain Hilly/Grass_Flat[(0, -0.1, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_4;Grass]
+#Modular Terrain Hilly/Grass_Flat[(-1, -0.1, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_5;Grass]
+#Modular Terrain Hilly/Grass_Flat[(1, -0.1, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_6;Grass]
+#Modular Terrain Hilly/Grass_Flat[(0, -0.1, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_7;Grass]
+#Modular Terrain Hilly/Grass_Flat[(-1, -0.1, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);Grass_Flat_8;Grass]
+#Modular Terrain Hilly/Prop_Grass_Clump_4[(-0.65, 0.1, 0.95);(0.0, 90.0, 0.0);(0.5, 0.5, 0.5);Prop_Grass_Clump_4_9;Grass]
+#Modular Terrain Hilly/Prop_Grass_Clump_1[(-0.65, 0.1, -0.45);(0.0, 90.0, 0.0);(0.5, 0.5, 0.5);Prop_Grass_Clump_1_11;Grass]
+#Modular Terrain Hilly/Prop_Grass_Clump_1[(0.25, 0.1, 0.05);(0.0, 90.0, 0.0);(0.5, 0.5, 0.5);Prop_Grass_Clump_1_13;Grass]
+#Modular Terrain Hilly/Prop_Grass_Clump_1[(0.65, 0.1, -1.15);(0.0, 90.0, 0.0);(0.5, 0.5, 0.5);Prop_Grass_Clump_1_14;Grass]
+#Modular Terrain Hilly/Prop_Grass_Clump_1[(0.75, 0.1, 0.45);(0.0, 180.0, 0.0);(0.5, 0.5, 0.5);Prop_Grass_Clump_1_15;Grass]
+#Modular Terrain Hilly/Prop_Flower_Sunflower[(-0.05, 0.1, -0.55);(0.0, 90.0, 0.0);(0.5, 0.5, 0.5);Prop_Flower_Sunflower_17;Pine_Leaves+Sunflower+Grey_-_20]
+
+:materials
+Grass[RGBA(0.133, 0.545, 0.133, 1.000);]
+Rock[RGBA(0.631, 0.624, 0.612, 1.000);]
+Grey_-_20[RGBA(0.200, 0.200, 0.200, 1.000);]
+Pine_Leaves[RGBA(0.126, 0.404, 0.204, 1.000);]
+Tulip[RGBA(0.878, 0.361, 0.478, 1.000);]
+Wood_Dark[RGBA(0.518, 0.420, 0.333, 1.000);]
+Wood_Light[RGBA(0.737, 0.631, 0.463, 1.000);]
+Sunflower[RGBA(0.984, 0.941, 0.177, 1.000);]
+
+:textures
+
+:extra
