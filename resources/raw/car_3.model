@@ -1,0 +1,23 @@
+# Made using Asset Forge (1.3)
+
+:models
+Vehicles/windshield_jeep[(0, 0, 0);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);windshield_jeep_402;_defaultMat+orangeSteel+blueSteel+glass+tire]
+Vehicles/hood_truck[(0, 0, -1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);hood_truck_403;_defaultMat+blueSteel+light]
+Vehicles/trunk_bed[(0, 0, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);trunk_bed_405;blueSteel+_defaultMat]
+Vehicles/wheel_small[(-1, 0, 1);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);wheel_small_407;tire+_defaultMat]
+Vehicles/wheel_small[(-1, 0, -0.6);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);wheel_small_408;tire+_defaultMat]
+Vehicles/wheel_small[(1, 0, -0.6);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);wheel_small_409;tire+_defaultMat]
+Vehicles/wheel_small[(1, 0, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);wheel_small_410;tire+_defaultMat]
+Vehicles/detail_rollbar[(0, 0.3, 1);(0.0, 0.0, 0.0);(1.0, 1.0, 1.0);detail_rollbar_411;_defaultMat]
+
+:materials
+_defaultMat[RGBA(1.000, 1.000, 1.000, 1.000);]
+orangeSteel[RGBA(1.000, 0.689, 0.000, 1.000);]
+blueSteel[RGBA(0.141, 0.565, 0.831, 1.000);]
+glass[RGBA(0.298, 0.314, 0.365, 1.000);]
+tire[RGBA(0.298, 0.314, 0.365, 1.000);]
+light[RGBA(1.000, 1.000, 1.000, 1.000);]
+
+:textures
+
+:extra

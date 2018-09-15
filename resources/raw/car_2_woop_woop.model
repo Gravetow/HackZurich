@@ -1,0 +1,26 @@
+# Made using Asset Forge (1.3)
+
+:models
+Vehicles/wheel_smallSports[(-0.9, 0, -0.8);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);wheel_smallSports_390;tire+_defaultMat]
+Vehicles/wheel_smallSports[(-0.9, 0, 0.7);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);wheel_smallSports_391;tire+_defaultMat]
+Vehicles/wheel_smallSports[(0.1, 0, 0.7);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);wheel_smallSports_392;tire+_defaultMat]
+Vehicles/wheel_smallSports[(0.1, 0, -0.8);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);wheel_smallSports_393;tire+_defaultMat]
+Vehicles/hood_default[(0, 0, 1);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);hood_default_394;blueSteel+blueSteel+light]
+Vehicles/trunk_default[(0, 0, -1);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);trunk_default_396;blueSteel+blueSteel+blueSteel+glass]
+Vehicles/windshield_sports[(0, 0, 0);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);windshield_sports_399;_defaultMat+_defaultMat+_defaultMat+glass]
+Vehicles/detail_policeLights[(0, 0.8, -0.1);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);detail_policeLights_400;_defaultMat+tire+lightBlue+lightRed]
+Vehicles/detail_spoiler[(0, 0.4, -1.3);(0.0, 180.0, 0.0);(1.0, 1.0, 1.0);detail_spoiler_401;glass]
+
+:materials
+tire[RGBA(0.298, 0.314, 0.365, 1.000);]
+_defaultMat[RGBA(1.000, 1.000, 1.000, 1.000);]
+blueSteel[RGBA(0.000, 0.000, 0.000, 1.000);]
+light[RGBA(1.000, 1.000, 1.000, 1.000);]
+orangeSteel[RGBA(1.000, 0.689, 0.000, 1.000);]
+glass[RGBA(0.298, 0.314, 0.365, 1.000);]
+lightBlue[RGBA(0.285, 0.562, 0.882, 1.000);]
+lightRed[RGBA(0.949, 0.373, 0.335, 1.000);]
+
+:textures
+
+:extra
