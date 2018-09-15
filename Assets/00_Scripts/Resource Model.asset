@@ -10,5 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4d4fa4da073b4724bb7e60757df867b2, type: 3}
-  m_Name: New Resource Model
+  m_Name: Resource Model
   m_EditorClassIdentifier: 
+  Currency: 0
+  Workers: 0
