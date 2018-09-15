@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using DG.Tweening;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using Zenject;
 
@@ -8,6 +9,8 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     readonly SignalBus _signalBus;
 
     private BoxCollider boxCollider;
+
+    public GameObject editBox;
 
     private void Awake()
     {
@@ -25,6 +28,7 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     public void OnLeaveConstruction(LeaveConstructionSignal leaveConstructionSignal)
     {
         boxCollider.enabled = true;
+        editBox.SetActive(false);
     }
 
     public void OnTileClicked(TileClickedSignal tileClickedSignal)
@@ -35,5 +39,9 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         _signalBus.Fire(new TileClickedSignal() { position = transform.position });
+        editBox.transform.position = transform.position;
+        editBox.SetActive(true);
+        editBox.GetComponent<Material>().DOColor(new Color(255,143,0,0) , 0.5f).SetLoops(-1);
+
     }
 }
