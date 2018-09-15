@@ -8,3 +8,8 @@ public class ResourceModelUpdatedSignal
 {
     public ResourceModel ResourceModel;
 }
+
+public class TileClickedSignal
+{
+    public Vector3 position;
+}
