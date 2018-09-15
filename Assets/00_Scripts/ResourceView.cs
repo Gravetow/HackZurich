@@ -4,6 +4,7 @@ using Zenject;
 
 public class ResourceView : MonoBehaviour
 {
+    [Inject]
     readonly SignalBus _signalBus;
 
     public int resourceViewType = 0;
