@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: 9685d10f0f8f21f47a419c963233df05
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: detail_rollbar_411
+    100004: hood_truck_403
+    100006: trunk_bed_405
+    100008: wheel_small_407
+    100010: wheel_small_408
+    100012: wheel_small_409
+    100014: wheel_small_410
+    100016: windshield_jeep_402
+    400000: //RootNode
+    400002: detail_rollbar_411
+    400004: hood_truck_403
+    400006: trunk_bed_405
+    400008: wheel_small_407
+    400010: wheel_small_408
+    400012: wheel_small_409
+    400014: wheel_small_410
+    400016: windshield_jeep_402
+    2100000: _defaultMat
+    2100002: orangeSteel
+    2100004: blueSteel
+    2100006: glass
+    2100008: tire
+    2100010: light
+    2300000: detail_rollbar_411
+    2300002: hood_truck_403
+    2300004: trunk_bed_405
+    2300006: wheel_small_407
+    2300008: wheel_small_408
+    2300010: wheel_small_409
+    2300012: wheel_small_410
+    2300014: windshield_jeep_402
+    3300000: detail_rollbar_411
+    3300002: hood_truck_403
+    3300004: trunk_bed_405
+    3300006: wheel_small_407
+    3300008: wheel_small_408
+    3300010: wheel_small_409
+    3300012: wheel_small_410
+    3300014: windshield_jeep_402
+    4300000: windshield_jeep_402
+    4300002: hood_truck_403
+    4300004: trunk_bed_405
+    4300006: wheel_small_407
+    4300008: wheel_small_408
+    4300010: wheel_small_409
+    4300012: wheel_small_410
+    4300014: detail_rollbar_411
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
