@@ -22,7 +22,6 @@ public class OverlayView : MonoBehaviour
 
     private void ActivateOverlay(TileClickedSignal tileClickedSignal)
     {
-        Debug.Log("aha");
         gameObject.SetActive(true);
     }
 
@@ -33,15 +32,4 @@ public class OverlayView : MonoBehaviour
     }
 
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
