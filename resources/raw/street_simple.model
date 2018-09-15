@@ -1,0 +1,20 @@
+# Made using Asset Forge (1.3)
+
+:models
+Primitives/block_default[(-0.8, 0, 0);(0.0, 180.0, 0.0);(1.4, 0.1, 3.0);block_default_158;customMaterial3]
+Primitives/block_default[(0.8, 0, 0);(0.0, 180.0, 0.0);(1.4, 0.1, 3.0);block_default_164;customMaterial3]
+Primitives/block_default[(1.12E-08, 0, -0.75);(0.0, 180.0, 0.0);(0.2, 0.1, 0.9);block_default_170;_defaultMat]
+Primitives/block_default[(1.12E-08, 0, -1.35);(0.0, 180.0, 0.0);(0.2, 0.1, 0.3);block_default_171;customMaterial3]
+Primitives/block_default[(1.12E-08, 0, 1.35);(0.0, 180.0, 0.0);(0.2, 0.1, 0.3);block_default_176;customMaterial3]
+Primitives/block_default[(1.12E-08, 0, 1.19E-07);(0.0, 180.0, 0.0);(0.2, 0.1, 0.6);block_default_177;customMaterial3]
+Primitives/block_default[(1.12E-08, 0, 0.75);(0.0, 180.0, 0.0);(0.2, 0.1, 0.9);block_default_178;_defaultMat]
+
+:materials
+_defaultMat[RGBA(1.000, 1.000, 1.000, 1.000);]
+stone[RGBA(0.667, 0.663, 0.737, 1.000);]
+lightStone[RGBA(0.657, 0.657, 0.657, 1.000);]
+customMaterial3[RGBA(0.290, 0.290, 0.290, 1.000);]
+
+:textures
+
+:extra
