@@ -15,6 +15,8 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
     public GameObject editBox;
     private GameObject tile;
+    private bool clicked;
+
 
     private void Awake()
     {
@@ -35,12 +37,15 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
     public void OnLeaveConstruction(LeaveConstructionSignal leaveConstructionSignal)
     {
-        if(leaveConstructionSignal.buildingBuilt == false)
+        if (clicked && leaveConstructionSignal.buildingBuilt != null) {
+            tile = leaveConstructionSignal.buildingBuilt;
+        } else
         {
             tile.SetActive(true);
         }
         boxCollider.enabled = true;
         editBox.SetActive(false);
+        clicked = false;
     }
 
     public void OnTileClicked(TileClickedSignal tileClickedSignal)
@@ -51,6 +56,7 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     public void OnPointerClick(PointerEventData eventData)
     {
         _signalBus.Fire(new TileClickedSignal() { position = transform.position });
+        clicked = true;
         editBox.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
         tile.SetActive(false);
         editBox.SetActive(true);

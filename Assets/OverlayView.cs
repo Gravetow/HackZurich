@@ -33,14 +33,14 @@ public class OverlayView : MonoBehaviour
 
     public void CancelConstruction()
     {
-        _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = false });
+        _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = null });
         gameObject.SetActive(false);
         Destroy(currentHouse);
     }
 
     public void ConfirmConstruction()
     {
-        _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = true });
+        _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = currentHouse });
         gameObject.SetActive(false);
         currentHouse = null;
     }
@@ -54,6 +54,7 @@ public class OverlayView : MonoBehaviour
 
         currentHouse = Instantiate(houseModel.Houses[houseId]);
         currentHouse.transform.position = position;
+        currentHouse.transform.eulerAngles += new Vector3(0, (float)Random.Range(0, 4) * 90f, 0);
     }
 
 }
