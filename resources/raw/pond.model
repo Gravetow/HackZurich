@@ -1,0 +1,19 @@
+# Made using Asset Forge (1.3)
+
+:models
+#Modular Terrain Hilly/Water_Flat[(0, 0, 0);(0.0, 180.0, 0.0);(3.0, 0.2, 3.0);Water_Flat_205;Water]
+#Modular Terrain Hilly/Prop_Cattail_1[(-0.65, 0, 0.45);(0.0, 180.0, 0.0);(0.5, 0.5, 0.5);Prop_Cattail_1_206;Oak_Leaves+Cattail]
+#Modular Terrain Hilly/Prop_Cattail_2[(0.85, 0, -0.35);(0.0, 180.0, 0.0);(0.5, 0.5, 0.5);Prop_Cattail_2_207;Oak_Leaves+Cattail]
+#Modular Terrain Hilly/Prop_Cattail_1[(-0.25, 0, 0.15);(0.0, 270.0, 0.0);(0.5, 0.5, 0.5);Prop_Cattail_1_209;Oak_Leaves+Cattail]
+#Modular Terrain Hilly/Prop_Cattail_1[(0.75, 0, -0.85);(0.0, 0.0, 0.0);(0.5, 0.7, 0.5);Prop_Cattail_1_210;Oak_Leaves+Cattail]
+#Modular Terrain Hilly/Prop_Cattail_2[(-0.85, 0, -0.55);(0.0, 270.0, 0.0);(0.5, 0.5, 0.5);Prop_Cattail_2_211;Oak_Leaves+Cattail]
+#Modular Terrain Hilly/Prop_Cattail_2[(0.25, 0, 0.75);(0.0, 270.0, 0.0);(0.5, 0.5, 0.5);Prop_Cattail_2_212;Oak_Leaves+Cattail]
+
+:materials
+Water[RGBA(0.200, 0.588, 0.820, 1.000);]
+Oak_Leaves[RGBA(0.322, 0.541, 0.157, 1.000);]
+Cattail[RGBA(0.706, 0.408, 0.278, 1.000);]
+
+:textures
+
+:extra
