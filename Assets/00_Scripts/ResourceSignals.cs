@@ -13,3 +13,8 @@ public class TileClickedSignal
 {
     public Vector3 position;
 }
+
+public class LeaveConstructionSignal
+{
+
+}

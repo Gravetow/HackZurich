@@ -9,8 +9,11 @@ public class GameInstaller : MonoInstaller<GameInstaller>
 
         Container.DeclareSignal<ResourceModelUpdatedSignal>();
         Container.DeclareSignal<TileClickedSignal>();
+        Container.DeclareSignal<LeaveConstructionSignal>();
+
         Container.BindInterfacesTo<ResourceView>().AsSingle();
         Container.BindInterfacesTo<TileClick>().AsSingle();
         Container.BindInterfacesTo<CameraMovement>().AsSingle();
+        Container.BindInterfacesTo<OverlayView>().AsSingle();
     }
 }

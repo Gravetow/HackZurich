@@ -8,7 +8,7 @@ public class CameraMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 {
     public float RotationSpeed;
 
-    public Vector3 LookAtPosition;
+    public Vector3 LookAtPosition = Vector3.zero;
 
     public Transform CameraTransform;
     public Camera MainCamera;
@@ -21,11 +21,15 @@ public class CameraMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
     private void Awake()
     {
         _signalBus.Subscribe<TileClickedSignal>(ZoomTo);
+        _signalBus.Subscribe<LeaveConstructionSignal>(ResetZoom);
+
+        MainCamera.transform.LookAt(LookAtPosition);
     }
 
     private void OnDestroy()
     {
         _signalBus.Unsubscribe<TileClickedSignal>(ZoomTo);
+        _signalBus.Unsubscribe<LeaveConstructionSignal>(ResetZoom);
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -56,8 +60,9 @@ public class CameraMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IE
 
     public void ResetZoom()
     {
-            CameraTransform.DOLookAt(Vector3.zero, 0.5f).SetEase(Ease.InOutQuad);
-            MainCamera.DOFieldOfView(60f, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => zoomed = false);
+        LookAtPosition = Vector3.zero;
+        CameraTransform.DOLookAt(Vector3.zero, 0.5f).SetEase(Ease.InOutQuad);
+        MainCamera.DOFieldOfView(60f, 0.5f).SetEase(Ease.InOutQuad).OnComplete(() => zoomed = false);
 
     }
 
