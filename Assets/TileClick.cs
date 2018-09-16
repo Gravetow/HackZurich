@@ -41,6 +41,10 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     {
         if (clicked && leaveConstructionSignal.buildingBuilt != null) {
             tile = leaveConstructionSignal.buildingBuilt;
+            BoxCollider box = tile.AddComponent<BoxCollider>();
+            box.center = boxCollider.center;
+            box.size = boxCollider.size;
+            Destroy(boxCollider);
         } else
         {
             tile.SetActive(true);
@@ -64,4 +68,5 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
         editBox.SetActive(true);
 
     }
+
 }

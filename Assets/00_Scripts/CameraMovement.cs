@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using DG.Tweening;
 using Zenject;
 
-public class CameraMovement : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
+public class CameraMovement : MonoBehaviour, UnityEngine.EventSystems.IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     public float RotationSpeed;
 

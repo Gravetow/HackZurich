@@ -14,6 +14,7 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         Container.DeclareSignal<TileClickedSignal>();
         Container.DeclareSignal<LeaveConstructionSignal>();
         Container.DeclareSignal<WorkerPercentageCalculatedSignal>();
+        Container.DeclareSignal<NotificationSignal>();
 
         Container.Bind<HouseModel>().FromInstance(houseModel);
         Container.Bind<CarModel>().FromInstance(carModel);
@@ -23,7 +24,9 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         Container.BindInterfacesTo<CameraMovement>().AsSingle();
         Container.BindInterfacesTo<OverlayView>().AsSingle();
         Container.BindInterfacesTo<SpawnCars>().AsSingle();
-        
+        Container.BindInterfacesTo<NotificationSignal>().AsSingle();
         Container.BindInterfacesTo<OpenBankingAPI>().AsSingle();
+
+
     }
 }

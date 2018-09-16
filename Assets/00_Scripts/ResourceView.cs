@@ -40,6 +40,8 @@ public class ResourceView : MonoBehaviour
 
         amount.SetText("" + resourceValue);
 
+        _signalBus.Fire(new NotificationSignal() { notification = "aha! + " + resourceValue });
+
     }
 
     public void OnResourcesUpdated(ResourceModelUpdatedSignal signal)
