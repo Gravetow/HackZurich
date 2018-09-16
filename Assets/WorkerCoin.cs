@@ -43,9 +43,8 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (houseCountroller == null)
         {
             GetComponent<Image>().raycastTarget = true;
-            transform.DOMove(transform.parent.GetChild(0).position, 0.5f).SetDelay(0.5f).OnComplete(() =>
+            transform.DOMove(startPosition, 0.5f).SetDelay(0.5f).OnComplete(() =>
             {
-                transform.SetSiblingIndex(0);
                 dragging = false;
 
             }

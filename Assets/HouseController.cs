@@ -40,7 +40,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
         switch (houseModelId)
         {
             case 4:
-                Profit = 5;
+                Profit = 2;
                 Capacity = 3;
                 ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"), transform);
                 ProfitIndicator.transform.position = transform.position + Vector3.up * 50;
