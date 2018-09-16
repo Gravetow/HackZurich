@@ -14,6 +14,8 @@ public class ResourceView : MonoBehaviour
 
     public TextMeshProUGUI amount;
 
+    public FakeTime fakeTime;
+
     public void Awake()
     {
         _signalBus.Subscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
@@ -59,8 +61,14 @@ public class ResourceView : MonoBehaviour
     public void OnAddWorker(AddWorkerSignal signal)
     {
         if (resourceViewType == 0) return;
+
+        if(signal.amount == 5)
+        {
+            fakeTime.AddDay();
+        }
         resourceAmount += signal.amount;
         amount.SetText("" + resourceAmount);
+
 
     }
 

@@ -42,7 +42,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             case 4:
                 Profit = 5;
                 Capacity = 3;
-                ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"),transform);
+                ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"), transform);
                 ProfitIndicator.transform.position = transform.position + Vector3.up * 50;
                 WorkerIndicator = Instantiate(GameObject.Find("WorkerIndicator"), transform);
                 WorkerIndicator.transform.position = transform.position + Vector3.up * 40;
@@ -75,7 +75,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
     {
         if (!WorkerCoin.dragging) return;
 
-        if(WorkerCoin.currentType == 0 && CurrentWorkerCount < Capacity)
+        if (WorkerCoin.currentType == 0 && CurrentWorkerCount < Capacity)
         {
             dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
             dropIndicator.SetActive(true);
@@ -113,8 +113,9 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
 
             if (CurrentWorkerCount < Capacity)
             {
-                WorkerIndicator.transform.GetChild(CurrentWorkerCount -1).GetComponent<Image>().color = Color.white;
-            } else
+                WorkerIndicator.transform.GetChild(CurrentWorkerCount - 1).GetComponent<Image>().color = Color.white;
+            }
+            else
             {
                 WorkerIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerIndicator));
                 ProfitIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(ProfitIndicator));
@@ -125,7 +126,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
         if (WorkerCoin.currentType == 1)
         {
             CurrentPaid++;
-            if ( CurrentPaid < Cost)
+            if (CurrentPaid < Cost)
             {
                 CostIndicator.transform.GetChild(CurrentPaid - 1).GetComponent<Image>().color = Color.white;
             }
@@ -135,7 +136,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
                 WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
                 SignalEmitter.AddToWorkers(WorkerPlus);
             }
-        } 
+        }
 
         if (WorkerCoin.currentType == 2)
         {
@@ -149,8 +150,17 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
                 Instantiate(UpgradedModel, transform);
 
                 UpgradeIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(UpgradeIndicator));
-                CostIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(CostIndicator));
-                WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
+
+                if (CostIndicator != null)
+                {
+                    CostIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(CostIndicator));
+                }
+
+                if (WorkerPlusIndicator != null)
+                {
+                    WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
+
+                }
 
                 Profit = 10;
                 Capacity = 2;
