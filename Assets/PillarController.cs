@@ -16,9 +16,4 @@ public class PillarController : MonoBehaviour
         transform.DOLocalMoveY(-250, Random.Range(2, 5)).SetEase(Ease.InOutQuad);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
