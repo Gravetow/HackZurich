@@ -31,6 +31,8 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public GameObject ProfitIndicator;
     public GameObject UpgradeIndicator;
 
+    public GameObject UpgradedModel;
+
     public SignalEmitter SignalEmitter;
 
     public void Construct()
@@ -47,11 +49,11 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
                 break;
             case 5:
                 WorkerPlus = 5;
-                UpgradeCost = 3;
+                //UpgradeCost = 3;
                 WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"), transform);
                 WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
-                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"), transform);
-                UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
+                //UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"), transform);
+                //UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
                 SignalEmitter.AddToWorkers(5);
                 WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
                 break;
@@ -116,7 +118,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             {
                 WorkerIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerIndicator));
                 ProfitIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(ProfitIndicator));
-                SignalEmitter.AddToMoney(2);
+                SignalEmitter.AddToMoney(Profit);
             }
         }
 
@@ -131,7 +133,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             {
                 CostIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(CostIndicator));
                 WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
-                SignalEmitter.AddToWorkers(5);
+                SignalEmitter.AddToWorkers(WorkerPlus);
             }
         } 
 
@@ -144,7 +146,19 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             }
             else
             {
+                Instantiate(UpgradedModel, transform);
+
                 UpgradeIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(UpgradeIndicator));
+                CostIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(CostIndicator));
+                WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
+
+                Profit = 10;
+                Capacity = 2;
+
+                WorkerIndicator = Instantiate(GameObject.Find("UpgradedWorkerIndicator"), transform);
+                WorkerIndicator.transform.position = transform.position + Vector3.up * 40;
+                ProfitIndicator = Instantiate(GameObject.Find("UpgradedProfitIndicator"), transform);
+                ProfitIndicator.transform.position = transform.position + Vector3.up * 50;
             }
         }
     }

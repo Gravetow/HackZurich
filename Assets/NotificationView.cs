@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 using DG.Tweening;
+using System;
 
 public class NotificationView : MonoBehaviour
 {
@@ -15,6 +16,19 @@ public class NotificationView : MonoBehaviour
     private void Awake()
     {
         _signalBus.Subscribe<NotificationSignal>(DisplayNotification);
+        _signalBus.Subscribe<LeaveConstructionSignal>(OnLeaveConstruct);
+        _signalBus.Subscribe<TileClickedSignal>(OnConstructMode);
+    }
+
+    private void OnLeaveConstruct()
+    {
+        GetComponent<CanvasGroup>().alpha = 1;
+
+    }
+
+    private void OnConstructMode()
+    {
+        GetComponent<CanvasGroup>().alpha = 0;
     }
 
     private void OnDestroy()
@@ -32,5 +46,7 @@ public class NotificationView : MonoBehaviour
             Notification.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuad);
         }
     }
+
+
 
 }

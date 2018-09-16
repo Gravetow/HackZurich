@@ -72,6 +72,7 @@ public class OverlayView : MonoBehaviour
         house.houseModelId = houseId;
         house.dropIndicator = DropIndicator;
         house.SignalEmitter = SignalEmitter;
+        house.UpgradedModel = houseModel.Houses[7];
         currentHouse.transform.position = position;
         currentHouse.transform.eulerAngles += new Vector3(0, (float)Random.Range(0, 4) * 90f, 0);
     }

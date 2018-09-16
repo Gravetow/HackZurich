@@ -43,14 +43,23 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         if (houseCountroller == null)
         {
             GetComponent<Image>().raycastTarget = true;
-            transform.DOMove(startPosition, 0.5f).SetDelay(0.5f).OnComplete(() => dragging = false);
-        } else
+            transform.DOMove(transform.parent.GetChild(0).position, 0.5f).SetDelay(0.5f).OnComplete(() =>
+            {
+                transform.SetSiblingIndex(0);
+                dragging = false;
+
+            }
+            );
+
+        }
+        else
         {
             houseCountroller.Drop(this);
-            if(currentType == 1)
+            if (currentType == 1)
             {
                 houseCountroller.SignalEmitter.SubstractMoney();
-            } else if(currentType == 0)
+            }
+            else if (currentType == 0)
             {
                 houseCountroller.SignalEmitter.SubstractWorker();
 

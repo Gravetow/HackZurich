@@ -49,6 +49,11 @@ public class ResourceView : MonoBehaviour
         if (resourceViewType == 1) return;
         resourceAmount += signal.amount;
         amount.SetText("" + resourceAmount);
+
+        if(resourceAmount > 1)
+        {
+            _signalBus.Fire(new NotificationSignal() { rewardType = 2, rewardCount = 3 });
+        }
     }
 
     public void OnAddWorker(AddWorkerSignal signal)

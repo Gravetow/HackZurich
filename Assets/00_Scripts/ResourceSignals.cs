@@ -43,10 +43,8 @@ public class AddWorkerSignal
 
 public class SubstractMoneySignal
 {
-    public int amount;
 }
 
 public class SubstractWorkerSignal
 {
-    public int amount;
 }
