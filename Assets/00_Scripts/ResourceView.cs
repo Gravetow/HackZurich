@@ -15,6 +15,8 @@ public class ResourceView : MonoBehaviour
     public void Awake()
     {
         _signalBus.Subscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
+        _signalBus.Subscribe<AddMoneySignal>(OnAddMoney);
+        _signalBus.Subscribe<AddWorkerSignal>(OnAddWorker);
         _signalBus.Subscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
@@ -39,22 +41,12 @@ public class ResourceView : MonoBehaviour
 
     public void OnTransactionsAcquired(WorkerPercentageCalculatedSignal signal)
     {
-        int resourceValue = 0;
-
-        switch (resourceViewType)
-        {
-            case 0:
-                resourceValue = (int)signal.workerPercentage;
-                break;
-            case 1:
-                resourceValue = (int)signal.workerPercentage;
-                break;
-        }
-
-        amount.SetText("" + resourceValue);
-
         if (resourceViewType == 1) return;
-        _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = resourceValue });
+
+
+        amount.SetText("" + (int)signal.workerPercentage);
+
+        _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = (int)signal.workerPercentage });
 
     }
 

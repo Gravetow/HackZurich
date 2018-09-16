@@ -49,10 +49,12 @@ public class OverlayView : MonoBehaviour
     public void ConfirmConstruction()
     {
         _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = currentHouse });
-        
         gameObject.SetActive(false);
+        currentHouse.GetComponent<HouseController>().Construct();
         currentHouse = null;
         currentDescription.SetActive(false);
+
+
     }
 
     public void ShowHouse(int houseId)

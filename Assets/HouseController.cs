@@ -33,7 +33,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
 
     public SignalEmitter SignalEmitter;
 
-    private void Start()
+    public void Construct()
     {
         switch (houseModelId)
         {
@@ -52,6 +52,8 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
                 WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
                 UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"), transform);
                 UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
+                SignalEmitter.AddToWorkers(5);
+                WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
                 break;
             case 6:
                 Cost = 5;
@@ -113,22 +115,36 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             } else
             {
                 WorkerIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerIndicator));
+                ProfitIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(ProfitIndicator));
                 SignalEmitter.AddToMoney(2);
             }
         }
 
-        if (WorkerCoin.currentType == 1 && CurrentPaid < Cost)
+        if (WorkerCoin.currentType == 1)
         {
-            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
-            dropIndicator.SetActive(true);
-            WorkerCoin.houseCountroller = this;
-        }
+            CurrentPaid++;
+            if ( CurrentPaid < Cost)
+            {
+                CostIndicator.transform.GetChild(CurrentPaid - 1).GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                CostIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(CostIndicator));
+                SignalEmitter.AddToWorkers(5);
+            }
+        } 
 
-        if (WorkerCoin.currentType == 2 && CurrentUpgradeCount < UpgradeCost)
+        if (WorkerCoin.currentType == 2)
         {
-            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
-            dropIndicator.SetActive(true);
-            WorkerCoin.houseCountroller = this;
+            CurrentUpgradeCount++;
+            if (CurrentUpgradeCount < UpgradeCost)
+            {
+                UpgradeIndicator.transform.GetChild(CurrentUpgradeCount - 1).GetComponent<Image>().color = Color.white;
+            }
+            else
+            {
+                UpgradeIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(UpgradeIndicator));
+            }
         }
     }
 
