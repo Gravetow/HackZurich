@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: TransparentGlow
+  m_Name: EditIndicator
   m_Shader: {fileID: 4800000, guid: fd17b76bbc4725740b8e2bc28ee8c4eb, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4

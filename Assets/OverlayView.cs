@@ -17,6 +17,10 @@ public class OverlayView : MonoBehaviour
     private GameObject currentHouse;
     private GameObject currentDescription;
 
+    public GameObject DropIndicator;
+    public SignalEmitter SignalEmitter;
+
+
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -46,8 +50,11 @@ public class OverlayView : MonoBehaviour
     {
         _signalBus.Fire(new LeaveConstructionSignal() { buildingBuilt = currentHouse });
         gameObject.SetActive(false);
+        currentHouse.GetComponent<HouseController>().Construct();
         currentHouse = null;
         currentDescription.SetActive(false);
+
+
     }
 
     public void ShowHouse(int houseId)
@@ -61,6 +68,10 @@ public class OverlayView : MonoBehaviour
         currentDescription = Descriptions[houseId - 4];
         currentDescription.SetActive(true);
         currentHouse = Instantiate(houseModel.Houses[houseId]);
+        HouseController house = currentHouse.AddComponent<HouseController>();
+        house.houseModelId = houseId;
+        house.dropIndicator = DropIndicator;
+        house.SignalEmitter = SignalEmitter;
         currentHouse.transform.position = position;
         currentHouse.transform.eulerAngles += new Vector3(0, (float)Random.Range(0, 4) * 90f, 0);
     }

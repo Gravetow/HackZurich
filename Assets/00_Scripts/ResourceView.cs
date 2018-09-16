@@ -9,12 +9,15 @@ public class ResourceView : MonoBehaviour
 
     public int resourceViewType = 0;
 
+    public int resourceAmount;
 
     public TextMeshProUGUI amount;
 
     public void Awake()
     {
         _signalBus.Subscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
+        _signalBus.Subscribe<AddMoneySignal>(OnAddMoney);
+        _signalBus.Subscribe<AddWorkerSignal>(OnAddWorker);
         _signalBus.Subscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
@@ -24,21 +27,29 @@ public class ResourceView : MonoBehaviour
         _signalBus.Unsubscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
+    public void OnAddMoney(AddMoneySignal signal)
+    {
+        if (resourceViewType == 1) return;
+        resourceAmount += signal.amount;
+        amount.SetText("" + resourceAmount);
+    }
+
+    public void OnAddWorker(AddWorkerSignal signal)
+    {
+        if (resourceViewType == 0) return;
+        resourceAmount += signal.amount;
+        amount.SetText("" + resourceAmount);
+
+    }
+
     public void OnTransactionsAcquired(WorkerPercentageCalculatedSignal signal)
     {
-        int resourceValue = 0;
+        if (resourceViewType == 0) return;
 
-        switch (resourceViewType)
-        {
-            case 0:
-                resourceValue = (int)signal.workerPercentage;
-                break;
-            case 1:
-                resourceValue = (int)signal.workerPercentage;
-                break;
-        }
 
-        amount.SetText("" + resourceValue);
+        amount.SetText("" + (int)signal.workerPercentage);
+
+        _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = (int)signal.workerPercentage });
 
     }
 
