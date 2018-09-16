@@ -24,6 +24,19 @@ public class ResourceView : MonoBehaviour
         _signalBus.Unsubscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
+    public void OnAddMoney(AddMoneySignal signal)
+    {
+        if (resourceViewType == 0) return;
+        amount.SetText("" + signal.amount);
+    }
+
+    public void OnAddWorker(AddWorkerSignal signal)
+    {
+        if (resourceViewType == 1) return;
+        amount.SetText("" + signal.amount);
+
+    }
+
     public void OnTransactionsAcquired(WorkerPercentageCalculatedSignal signal)
     {
         int resourceValue = 0;

@@ -18,6 +18,8 @@ public class OverlayView : MonoBehaviour
     private GameObject currentDescription;
 
     public GameObject DropIndicator;
+    public SignalEmitter SignalEmitter;
+
 
     private void Awake()
     {
@@ -67,6 +69,7 @@ public class OverlayView : MonoBehaviour
         HouseController house = currentHouse.AddComponent<HouseController>();
         house.houseModelId = houseId;
         house.dropIndicator = DropIndicator;
+        house.SignalEmitter = SignalEmitter;
         currentHouse.transform.position = position;
         currentHouse.transform.eulerAngles += new Vector3(0, (float)Random.Range(0, 4) * 90f, 0);
     }

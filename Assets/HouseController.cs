@@ -4,6 +4,7 @@ using UnityEngine;
 using Zenject;
 using DG.Tweening;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
 {
@@ -12,11 +13,13 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public int houseModelId;
 
     public int Cost;
+    public int CurrentPaid;
 
     public int Profit;
     public int WorkerPlus;
 
     public int UpgradeCost;
+    public int CurrentUpgradeCount;
 
     public int Capacity;
     public int CurrentWorkerCount;
@@ -28,13 +31,15 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public GameObject ProfitIndicator;
     public GameObject UpgradeIndicator;
 
+    public SignalEmitter SignalEmitter;
+
     private void Start()
     {
         switch (houseModelId)
         {
             case 4:
                 Profit = 5;
-                Capacity = 3;
+                Capacity = 2;
                 ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"),transform);
                 ProfitIndicator.transform.position = transform.position + Vector3.up * 50;
                 WorkerIndicator = Instantiate(GameObject.Find("WorkerIndicator"), transform);
@@ -65,16 +70,66 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (!WorkerCoin.dragging) return;
-        dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
-        dropIndicator.SetActive(true);
+
+        if(WorkerCoin.currentType == 0 && CurrentWorkerCount < Capacity)
+        {
+            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+            dropIndicator.SetActive(true);
+            WorkerCoin.houseCountroller = this;
+        }
+
+        if (WorkerCoin.currentType == 1 && CurrentPaid < Cost)
+        {
+            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+            dropIndicator.SetActive(true);
+            WorkerCoin.houseCountroller = this;
+        }
+
+        if (WorkerCoin.currentType == 2 && CurrentUpgradeCount < UpgradeCost)
+        {
+            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+            dropIndicator.SetActive(true);
+            WorkerCoin.houseCountroller = this;
+        }
+
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         if (!WorkerCoin.dragging) return;
         dropIndicator.SetActive(false);
+        WorkerCoin.houseCountroller = null;
     }
 
-   
+    public void Drop(WorkerCoin coin)
+    {
+        if (WorkerCoin.currentType == 0)
+        {
+            CurrentWorkerCount++;
+
+            if (CurrentWorkerCount < Capacity)
+            {
+                WorkerIndicator.transform.GetChild(CurrentWorkerCount -1).GetComponent<Image>().color = Color.white;
+            } else
+            {
+                WorkerIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerIndicator));
+                SignalEmitter.AddToMoney(2);
+            }
+        }
+
+        if (WorkerCoin.currentType == 1 && CurrentPaid < Cost)
+        {
+            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+            dropIndicator.SetActive(true);
+            WorkerCoin.houseCountroller = this;
+        }
+
+        if (WorkerCoin.currentType == 2 && CurrentUpgradeCount < UpgradeCost)
+        {
+            dropIndicator.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
+            dropIndicator.SetActive(true);
+            WorkerCoin.houseCountroller = this;
+        }
+    }
 
 }

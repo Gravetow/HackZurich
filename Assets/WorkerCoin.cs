@@ -8,9 +8,11 @@ using UnityEngine.UI;
 public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
 
+    public int type = 0;
+    public static int currentType = 0;
     public static bool dragging = false;
     public static bool currentlyActive = true;
-
+    public static HouseController houseCountroller = null;
 
     public Vector3 startPosition;
 
@@ -23,6 +25,7 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (dragging) return;
+        currentType = type;
         dragging = true;
         startPosition = transform.position;
 
@@ -37,13 +40,18 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        if(eventData.pointerCurrentRaycast.isValid)
+        if (houseCountroller == null)
         {
-            Debug.Log(eventData.pointerCurrentRaycast.gameObject.name, eventData.pointerCurrentRaycast.gameObject);
+            GetComponent<Image>().raycastTarget = true;
+            transform.DOMove(startPosition, 0.5f).SetDelay(0.5f).OnComplete(() => dragging = false);
+        } else
+        {
+            houseCountroller.Drop(this);
+            transform.DOScale(0, 0.5f).OnComplete(() => Destroy(this));
         }
-        GetComponent<Image>().raycastTarget = true;
 
-        transform.DOMove(startPosition, 0.5f).SetDelay(0.5f).OnComplete(() => dragging = false); ;
+
+
 
     }
 

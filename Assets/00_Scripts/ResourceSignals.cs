@@ -30,3 +30,13 @@ public class NotificationSignal
     public int rewardType;
     public int rewardCount;
 }
+
+public class AddMoneySignal
+{
+    public int amount;
+}
+
+public class AddWorkerSignal
+{
+    public int amount;
+}
