@@ -130,6 +130,7 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             else
             {
                 CostIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(CostIndicator));
+                WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
                 SignalEmitter.AddToWorkers(5);
             }
         } 

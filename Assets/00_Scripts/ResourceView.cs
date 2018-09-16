@@ -9,6 +9,7 @@ public class ResourceView : MonoBehaviour
 
     public int resourceViewType = 0;
 
+    public int resourceAmount;
 
     public TextMeshProUGUI amount;
 
@@ -28,20 +29,22 @@ public class ResourceView : MonoBehaviour
 
     public void OnAddMoney(AddMoneySignal signal)
     {
-        if (resourceViewType == 0) return;
-        amount.SetText("" + signal.amount);
+        if (resourceViewType == 1) return;
+        resourceAmount += signal.amount;
+        amount.SetText("" + resourceAmount);
     }
 
     public void OnAddWorker(AddWorkerSignal signal)
     {
-        if (resourceViewType == 1) return;
-        amount.SetText("" + signal.amount);
+        if (resourceViewType == 0) return;
+        resourceAmount += signal.amount;
+        amount.SetText("" + resourceAmount);
 
     }
 
     public void OnTransactionsAcquired(WorkerPercentageCalculatedSignal signal)
     {
-        if (resourceViewType == 1) return;
+        if (resourceViewType == 0) return;
 
 
         amount.SetText("" + (int)signal.workerPercentage);
