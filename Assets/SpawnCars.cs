@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
+using DG.Tweening;
 
 public class SpawnCars : MonoBehaviour
 {
@@ -21,10 +22,16 @@ public class SpawnCars : MonoBehaviour
     new CarPath(new Vector3(-50,0,-20), new Vector3(50,0,-20)),
     };
 
+    private void Awake()
+    {
+        transform.localPosition += Vector3.down * 400;
+        transform.DOLocalMoveY(0, 1f).SetEase(Ease.InOutQuad).SetDelay(4);
+    }
+
     private void Start()
     {
-        SpawnRandomCar(2);
-       
+        transform.DOLocalMoveY(0, 1f).SetEase(Ease.InOutQuad).SetDelay(5).OnComplete(() => { SpawnRandomCar(2); });
+
     }
 
     public int currentPath = 0;

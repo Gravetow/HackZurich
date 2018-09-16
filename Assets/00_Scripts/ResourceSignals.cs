@@ -23,3 +23,28 @@ public class WorkerPercentageCalculatedSignal
 {
     public double workerPercentage;
 }
+
+public class NotificationSignal
+{
+    public string notification;
+    public int rewardType;
+    public int rewardCount;
+}
+
+public class AddMoneySignal
+{
+    public int amount;
+}
+
+public class AddWorkerSignal
+{
+    public int amount;
+}
+
+public class SubstractMoneySignal
+{
+}
+
+public class SubstractWorkerSignal
+{
+}

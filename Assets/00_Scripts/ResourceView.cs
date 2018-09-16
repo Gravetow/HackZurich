@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using Zenject;
+using System;
 
 public class ResourceView : MonoBehaviour
 {
@@ -9,13 +10,34 @@ public class ResourceView : MonoBehaviour
 
     public int resourceViewType = 0;
 
+    public int resourceAmount;
 
     public TextMeshProUGUI amount;
+
+    public FakeTime fakeTime;
 
     public void Awake()
     {
         _signalBus.Subscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
+        _signalBus.Subscribe<AddMoneySignal>(OnAddMoney);
+        _signalBus.Subscribe<AddWorkerSignal>(OnAddWorker);
+        _signalBus.Subscribe<SubstractMoneySignal>(OnSubstractMoney);
+        _signalBus.Subscribe<SubstractWorkerSignal>(OnSubstractWorker);
         _signalBus.Subscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
+    }
+
+    private void OnSubstractMoney()
+    {
+        if (resourceViewType == 1) return;
+        resourceAmount--;
+        amount.SetText("" + resourceAmount);
+    }
+
+    private void OnSubstractWorker()
+    {
+        if (resourceViewType == 0) return;
+        resourceAmount--;
+        amount.SetText("" + resourceAmount);
     }
 
     public void OnDestroy()
@@ -24,21 +46,40 @@ public class ResourceView : MonoBehaviour
         _signalBus.Unsubscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
     }
 
+    public void OnAddMoney(AddMoneySignal signal)
+    {
+        if (resourceViewType == 1) return;
+        resourceAmount += signal.amount;
+        amount.SetText("" + resourceAmount);
+
+        if(resourceAmount > 1)
+        {
+            _signalBus.Fire(new NotificationSignal() { rewardType = 2, rewardCount = 3 });
+        }
+    }
+
+    public void OnAddWorker(AddWorkerSignal signal)
+    {
+        if (resourceViewType == 0) return;
+
+        if(signal.amount == 5)
+        {
+            fakeTime.AddDay();
+        }
+        resourceAmount += signal.amount;
+        amount.SetText("" + resourceAmount);
+
+
+    }
+
     public void OnTransactionsAcquired(WorkerPercentageCalculatedSignal signal)
     {
-        int resourceValue = 0;
+        if (resourceViewType == 0) return;
 
-        switch (resourceViewType)
-        {
-            case 0:
-                resourceValue = (int)signal.workerPercentage;
-                break;
-            case 1:
-                resourceValue = (int)signal.workerPercentage;
-                break;
-        }
+        resourceAmount += (int)signal.workerPercentage;
+        amount.SetText("" + resourceAmount);
 
-        amount.SetText("" + resourceValue);
+        _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = (int)signal.workerPercentage });
 
     }
 
@@ -56,6 +97,5 @@ public class ResourceView : MonoBehaviour
                 break;
         }
 
-        //TextMeshPro.SetText("" + resourceValue);
     }
 }

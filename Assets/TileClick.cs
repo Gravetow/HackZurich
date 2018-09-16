@@ -26,6 +26,8 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
         tile = Instantiate(houseModel.Houses[Random.Range(0,3)]);
         tile.transform.position = transform.position;
+        tile.transform.SetParent(transform);
+        tile.transform.localPosition +=  0.5f* Vector3.up;
 
     }
 
@@ -39,6 +41,11 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
     {
         if (clicked && leaveConstructionSignal.buildingBuilt != null) {
             tile = leaveConstructionSignal.buildingBuilt;
+            BoxCollider box = tile.AddComponent<BoxCollider>();
+            box.center = boxCollider.center;
+            box.size = boxCollider.size;
+            Destroy(boxCollider);
+            Destroy(this);
         } else
         {
             tile.SetActive(true);
@@ -55,6 +62,7 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (WorkerCoin.dragging) return;
         _signalBus.Fire(new TileClickedSignal() { position = transform.position });
         clicked = true;
         editBox.transform.position = new Vector3(transform.position.x, 15, transform.position.z);
@@ -62,4 +70,5 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
         editBox.SetActive(true);
 
     }
+
 }
