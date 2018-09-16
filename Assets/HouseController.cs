@@ -49,11 +49,8 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
                 break;
             case 5:
                 WorkerPlus = 5;
-                //UpgradeCost = 3;
                 WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"), transform);
                 WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
-                //UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"), transform);
-                //UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
                 SignalEmitter.AddToWorkers(5);
                 WorkerPlusIndicator.transform.DOScale(0, 0.5f).OnComplete(() => Destroy(WorkerPlusIndicator));
                 break;

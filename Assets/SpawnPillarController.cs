@@ -19,10 +19,10 @@ public class SpawnPillarController : MonoBehaviour
             pillar.SetActive(true);
         }
         NewStreet.transform.DOLocalMoveY(0, 1f).SetEase(Ease.InOutQuad).SetDelay(4);
-        SpawnCars.paths[0].start += new Vector3(0,0,40);
-        SpawnCars.paths[1].start += new Vector3(0, 0, 40);
-        SpawnCars.paths[2].start -= new Vector3(0, 0, 40);
-        SpawnCars.paths[3].start -= new Vector3(0, 0, 40);
+        //SpawnCars.paths[0].start += new Vector3(0,0,40);
+        //SpawnCars.paths[1].start += new Vector3(0, 0, 40);
+        //SpawnCars.paths[2].start -= new Vector3(0, 0, 40);
+        //SpawnCars.paths[3].start -= new Vector3(0, 0, 40);
     }
 }
     
