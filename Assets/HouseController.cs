@@ -22,6 +22,11 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
     public int CurrentWorkerCount;
 
     public GameObject dropIndicator;
+    public GameObject CostIndicator;
+    public GameObject WorkerIndicator;
+    public GameObject WorkerPlusIndicator;
+    public GameObject ProfitIndicator;
+    public GameObject UpgradeIndicator;
 
     private void Start()
     {
@@ -30,15 +35,29 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             case 4:
                 Profit = 5;
                 Capacity = 3;
+                ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"));
+                ProfitIndicator.transform.position = transform.position + Vector3.up * 50;
+                WorkerIndicator = Instantiate(GameObject.Find("WorkerIndicator"));
+                WorkerIndicator.transform.position = transform.position + Vector3.up * 40;
                 break;
             case 5:
                 WorkerPlus = 5;
                 UpgradeCost = 3;
+                WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"));
+                WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
+                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"));
+                UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
                 break;
             case 6:
                 Cost = 5;
                 WorkerPlus = 5;
                 UpgradeCost = 3;
+                CostIndicator = Instantiate(GameObject.Find("CostIndicator"));
+                CostIndicator.transform.position = transform.position + Vector3.up * 60;
+                WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"));
+                WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
+                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"));
+                UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
                 break;
         }
     }

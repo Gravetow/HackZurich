@@ -45,6 +45,7 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
             box.center = boxCollider.center;
             box.size = boxCollider.size;
             Destroy(boxCollider);
+            Destroy(this);
         } else
         {
             tile.SetActive(true);
