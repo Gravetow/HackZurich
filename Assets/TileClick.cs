@@ -26,6 +26,8 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
         tile = Instantiate(houseModel.Houses[Random.Range(0,3)]);
         tile.transform.position = transform.position;
+        tile.transform.SetParent(transform);
+        tile.transform.localPosition +=  0.5f* Vector3.up;
 
     }
 
