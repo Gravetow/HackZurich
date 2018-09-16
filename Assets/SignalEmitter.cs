@@ -18,7 +18,18 @@ public class SignalEmitter : MonoBehaviour
     {
         _signalBus.Fire(new AddWorkerSignal() { amount = amount });
         _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = amount });
+    }
+
+    public void SubstractMoney()
+    {
+        _signalBus.Fire(new SubstractMoneySignal() {});
+    }
+
+    public void SubstractWorker()
+    {
+        _signalBus.Fire(new SubstractWorkerSignal() { });
 
     }
+
 
 }

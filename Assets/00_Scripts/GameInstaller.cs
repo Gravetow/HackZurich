@@ -17,6 +17,8 @@ public class GameInstaller : MonoInstaller<GameInstaller>
         Container.DeclareSignal<NotificationSignal>();
         Container.DeclareSignal<AddMoneySignal>();
         Container.DeclareSignal<AddWorkerSignal>();
+        Container.DeclareSignal<SubstractMoneySignal>();
+        Container.DeclareSignal<SubstractWorkerSignal>();
 
         Container.Bind<HouseModel>().FromInstance(houseModel);
         Container.Bind<CarModel>().FromInstance(carModel);

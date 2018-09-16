@@ -40,3 +40,13 @@ public class AddWorkerSignal
 {
     public int amount;
 }
+
+public class SubstractMoneySignal
+{
+    public int amount;
+}
+
+public class SubstractWorkerSignal
+{
+    public int amount;
+}

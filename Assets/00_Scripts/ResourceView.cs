@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using TMPro;
 using Zenject;
+using System;
 
 public class ResourceView : MonoBehaviour
 {
@@ -18,7 +19,23 @@ public class ResourceView : MonoBehaviour
         _signalBus.Subscribe<ResourceModelUpdatedSignal>(OnResourcesUpdated);
         _signalBus.Subscribe<AddMoneySignal>(OnAddMoney);
         _signalBus.Subscribe<AddWorkerSignal>(OnAddWorker);
+        _signalBus.Subscribe<SubstractMoneySignal>(OnSubstractMoney);
+        _signalBus.Subscribe<SubstractWorkerSignal>(OnSubstractWorker);
         _signalBus.Subscribe<WorkerPercentageCalculatedSignal>(OnTransactionsAcquired);
+    }
+
+    private void OnSubstractMoney()
+    {
+        if (resourceViewType == 1) return;
+        resourceAmount--;
+        amount.SetText("" + resourceAmount);
+    }
+
+    private void OnSubstractWorker()
+    {
+        if (resourceViewType == 0) return;
+        resourceAmount--;
+        amount.SetText("" + resourceAmount);
     }
 
     public void OnDestroy()
@@ -46,8 +63,8 @@ public class ResourceView : MonoBehaviour
     {
         if (resourceViewType == 0) return;
 
-
-        amount.SetText("" + (int)signal.workerPercentage);
+        resourceAmount += (int)signal.workerPercentage;
+        amount.SetText("" + resourceAmount);
 
         _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = (int)signal.workerPercentage });
 
@@ -67,6 +84,5 @@ public class ResourceView : MonoBehaviour
                 break;
         }
 
-        //TextMeshPro.SetText("" + resourceValue);
     }
 }

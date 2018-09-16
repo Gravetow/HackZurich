@@ -47,6 +47,14 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
         } else
         {
             houseCountroller.Drop(this);
+            if(currentType == 1)
+            {
+                houseCountroller.SignalEmitter.SubstractMoney();
+            } else if(currentType == 0)
+            {
+                houseCountroller.SignalEmitter.SubstractWorker();
+
+            }
             transform.DOScale(0, 0.5f).OnComplete(() => Destroy(gameObject));
         }
 
