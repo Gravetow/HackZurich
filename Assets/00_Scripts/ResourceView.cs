@@ -53,6 +53,7 @@ public class ResourceView : MonoBehaviour
 
         amount.SetText("" + resourceValue);
 
+        if (resourceViewType == 1) return;
         _signalBus.Fire(new NotificationSignal() { rewardType = 0, rewardCount = resourceValue });
 
     }
