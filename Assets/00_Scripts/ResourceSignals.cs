@@ -27,4 +27,6 @@ public class WorkerPercentageCalculatedSignal
 public class NotificationSignal
 {
     public string notification;
+    public int rewardType;
+    public int rewardCount;
 }

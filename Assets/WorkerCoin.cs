@@ -9,15 +9,23 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 {
 
     public static bool dragging = false;
+    public static bool currentlyActive = true;
+
+
+    public Vector3 startPosition;
 
     private void OnDestroy()
     {
         dragging = false;
+        currentlyActive = false;
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
+        if (dragging) return;
         dragging = true;
+        startPosition = transform.position;
+
         GetComponent<Image>().raycastTarget = false;
     }
 
@@ -29,12 +37,13 @@ public class WorkerCoin : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDr
 
     public void OnEndDrag(PointerEventData eventData)
     {
-        dragging = false;
         if(eventData.pointerCurrentRaycast.isValid)
         {
             Debug.Log(eventData.pointerCurrentRaycast.gameObject.name, eventData.pointerCurrentRaycast.gameObject);
         }
         GetComponent<Image>().raycastTarget = true;
+
+        transform.DOMove(startPosition, 0.5f).SetDelay(0.5f).OnComplete(() => dragging = false); ;
 
     }
 

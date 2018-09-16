@@ -35,28 +35,28 @@ public class HouseController : MonoBehaviour, IPointerExitHandler, IPointerEnter
             case 4:
                 Profit = 5;
                 Capacity = 3;
-                ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"));
+                ProfitIndicator = Instantiate(GameObject.Find("ProfitIndicator"),transform);
                 ProfitIndicator.transform.position = transform.position + Vector3.up * 50;
-                WorkerIndicator = Instantiate(GameObject.Find("WorkerIndicator"));
+                WorkerIndicator = Instantiate(GameObject.Find("WorkerIndicator"), transform);
                 WorkerIndicator.transform.position = transform.position + Vector3.up * 40;
                 break;
             case 5:
                 WorkerPlus = 5;
                 UpgradeCost = 3;
-                WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"));
+                WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"), transform);
                 WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
-                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"));
+                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"), transform);
                 UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
                 break;
             case 6:
                 Cost = 5;
                 WorkerPlus = 5;
                 UpgradeCost = 3;
-                CostIndicator = Instantiate(GameObject.Find("CostIndicator"));
+                CostIndicator = Instantiate(GameObject.Find("CostIndicator"), transform);
                 CostIndicator.transform.position = transform.position + Vector3.up * 60;
-                WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"));
+                WorkerPlusIndicator = Instantiate(GameObject.Find("WorkerPlusIndicator"), transform);
                 WorkerPlusIndicator.transform.position = transform.position + Vector3.up * 50;
-                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"));
+                UpgradeIndicator = Instantiate(GameObject.Find("UpgradeIndicator"), transform);
                 UpgradeIndicator.transform.position = transform.position + Vector3.up * 40;
                 break;
         }

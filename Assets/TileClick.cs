@@ -62,6 +62,7 @@ public class TileClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+        if (WorkerCoin.dragging) return;
         _signalBus.Fire(new TileClickedSignal() { position = transform.position });
         clicked = true;
         editBox.transform.position = new Vector3(transform.position.x, 15, transform.position.z);

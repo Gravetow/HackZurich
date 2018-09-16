@@ -9,6 +9,9 @@ public class NotificationView : MonoBehaviour
     [Inject]
     readonly SignalBus _signalBus;
 
+    public GameObject[] Notifications;
+
+
     private void Awake()
     {
         _signalBus.Subscribe<NotificationSignal>(DisplayNotification);
@@ -22,9 +25,12 @@ public class NotificationView : MonoBehaviour
 
     public void DisplayNotification(NotificationSignal notificationSignal)
     {
-        Sequence displayNotificationSequence = DOTween.Sequence();
-        displayNotificationSequence.Append(transform.DOMoveY(0, 1f));
-        displayNotificationSequence.Append(transform.DOLocalMoveY(300, 1f).SetDelay(5));
+        for(int i = 0; i < notificationSignal.rewardCount; i++) {
+            GameObject Notification = Instantiate(Notifications[notificationSignal.rewardType], transform);
+            Notification.transform.localScale = Vector3.zero;
+            Notification.SetActive(true);
+            Notification.transform.DOScale(1, 0.5f).SetEase(Ease.InOutQuad);
+        }
     }
 
 }
